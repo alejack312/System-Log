@@ -1,0 +1,37 @@
+package mod;
+
+import cont.JOP;
+
+public class Story 
+{
+	public void computer()
+	{
+		String output = "";
+		String s1 = "                              +----------------------------+\n";
+		String s2 =    "                              |.----------------------------.|\n";
+		String s3 =   "                              ||                                     ||\n";
+		String s4 =    "                              ||                                     ||\n";
+		String s5 =    "                              ||                                     ||\n";
+		String s6 =   "                              ||                                     ||\n";
+		String s7 =    "                              |+--------------------------+|\n";
+		String s8 =    "                              +-----..--------------..-----+\n";
+		String s9 =    "                              .------------------------------.\n";
+		String s10 =  "                             /  /===============\\   \\\n";
+		String s11 =  "                            /  /================\\   \\\n";
+		String s12 = "                           /____________________\\\n";
+		String s13 = "                           \\____________________/\n";
+        String s14 = "You sit down in front of your laptop for the day and it's time\n to login to your website's system log and view the log messages! \nEach log message can be modified using the system commands. \nAt the end of the day, type \"done\" and logout of the system portal.";
+		output = s1 + s2 + s3 + s4 + s5 + s6 + s7 + s8 + s9 + s10 + s11 + s12 + s13 + s14;
+		JOP.msg(output);
+	}
+	
+	public void instructions()
+	{
+		JOP.msg("Welcome to your website's system log. Handle all the system log messages here! \n\nHow to Navigate: \n-Typing in \"Add\" will allow you to add a message to the log of messages. \n-Typing in \"Print\" will display the current list of log messages. \n-Typing in \"ID Search\" will allow you to display the log messages by a certain machineID. \n-Typing in \"Keyword Search\" will allow you to display all log messages by a certain keyword. \n-Typing in \"ID Remove\" will allow you to remove all log messages by a certain machineID. \n-Typing in \"Keyword Remove\" will allow you to remove all log messages by a certain keyword. \n-Typing in \"Random\" will pair a specified machineID with a random log message description from the list of messages. \n-Typing in \"Description Count\" will display a list of every machineID and the number of different descriptions each ID has. \n-Typing in \"Commands\" will display the commands once more for reference. \n-Typing in \"Done\" will exit the maintenance system.");
+	}
+	
+	public void commands()
+	{
+		JOP.msg("How to Navigate: \n-Typing in \"Add\" will allow you to add a message to the log of messages. \n-Typing in \"Print\" will display the current list of log messages. \n-Typing in \"ID Search\" will allow you to display the log messages by a certain machineID. \n-Typing in \"Keyword Search\" will allow you to display all log messages by a certain keyword. \n-Typing in \"ID Remove\" will allow you to remove all log messages by a certain machineID. \n-Typing in \"Keyword Remove\" will allow you to remove all log messages by a certain keyword. \n-Typing in \"Random\" will pair a specified machineID with a random log message description from the list of messages. \n-Typing in \"Description Count\" will display a list of every machineID and the number of different descriptions each ID has. \n-Typing in \"Commands\" will display the commands once more for reference. \n-Typing in \"Done\" will exit the maintenance system.");
+	}
+}
