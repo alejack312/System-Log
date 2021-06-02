@@ -1,0 +1,15 @@
+package mod;
+
+public class Main {
+
+	public static void main(String[] args) 
+	{
+		// TODO Auto-generated method stub
+		Story _t = new Story();
+		_t.computer();
+		_t.instructions();
+		SystemLog _s = new SystemLog();
+		_s.navigation();
+	}
+
+}
