@@ -1,0 +1,230 @@
+package mod;
+import java.util.ArrayList;
+
+import cont.JOP;
+
+public class SystemLog 
+{
+	private ArrayList<LogMessage> messageList;
+	private LogMessage _l;
+	private boolean isEditing = true;
+	
+	public SystemLog()
+	{
+		messageList = new ArrayList<LogMessage>();
+	}
+	
+	public void addMessage(LogMessage m)
+	{
+		messageList.add(m);
+	}
+	
+	public void printLog()
+	{
+		String output = "";
+		for(int i = 0; i < messageList.size(); i++)
+		{
+			output += messageList.get(i).toString();
+		}
+		JOP.msg(output);
+	}
+	
+	public void searchWord(String keyword)
+	{
+		String output = "";
+		for(int i = 0; i < messageList.size(); i++)
+		{
+			if(messageList.get(i).containsWord(keyword))
+			{
+				output += messageList.get(i).toString();
+			}
+		}
+		JOP.msg(output);
+	}
+	
+	public void searchID(String ID)
+	{
+		String output = "";
+		for(int i = 0; i < messageList.size(); i++)
+		{
+			if(messageList.get(i).getMachineID().equalsIgnoreCase(ID))
+			{
+				output += messageList.get(i).toString();
+			}
+		}
+		JOP.msg(output);
+	}
+	
+	public void removeID(String keyword)
+	{
+		String output = "";
+		for(int i = 0; i < messageList.size(); i++)
+		{
+			if(messageList.get(i).getMachineID().equalsIgnoreCase(keyword))
+			{
+				messageList.remove(i);
+				i--;
+			}
+			else
+			{
+				output += messageList.get(i).toString();
+			}
+		}
+		JOP.msg(output);
+	}
+	
+	public void removeMessages(String keyword)
+	{
+		String output = "";
+		for(int i = 0; i < messageList.size(); i++)
+		{
+			if(messageList.get(i).containsWord(keyword))
+			{
+				messageList.remove(i);
+				i--;
+			}
+			else
+			{
+				output += messageList.get(i).toString();
+			}
+		}
+		JOP.msg(output);
+	}
+	
+	public void random(String ID)
+	{
+		JOP.msg(ID + ":" + messageList.get((int) (Math.random() * messageList.size())).getDescription());
+	}
+	
+	
+	public void descriptionCount()
+	{
+		String output = "";
+		ArrayList<LogMessage> temp = new ArrayList<LogMessage>();
+		for(int i = 0; i < messageList.size(); i++)
+		{
+			temp.add(messageList.get(i));
+		}
+		
+		for(int i = 0; i < temp.size(); i++)
+		{
+			int count = 1;
+			for(int j = i + 1; j < temp.size(); j++)
+			{
+				if(temp.get(i).getMachineID().equalsIgnoreCase(temp.get(j).getMachineID()))
+		        {
+		        	count++;
+		        	temp.remove(j);
+		        	//j--;
+		        }
+			}
+			output += temp.get(i).toStringTwo(count);
+		}
+		JOP.msg(output);
+	} 
+	
+	
+	public void initialLog()
+	{
+		LogMessage _a = new LogMessage("CLIENT3:security alert - repeated login failures");
+		addMessage(_a);
+		
+		LogMessage _b = new LogMessage("Webserver:disk offline");
+		addMessage(_b);
+		
+		LogMessage _c = new LogMessage("SERVER1:file not found");
+		addMessage(_c);
+		
+		LogMessage _d = new LogMessage("SERVER2:read error on disk DSK1");
+		addMessage(_d);
+		
+		LogMessage _e = new LogMessage("SERVER1:write error on disk DSK2");
+		addMessage(_e);
+		
+		LogMessage _f = new LogMessage("Webserver:error on /dev/disk");
+		addMessage(_f);
+		
+		LogMessage _g = new LogMessage("CLIENT1:password login successful");
+		addMessage(_g);
+		
+		LogMessage _h = new LogMessage("HTTP:404 Not Found");
+		addMessage(_h);
+		
+		LogMessage _i = new LogMessage("Host:connection established to chrome.google.com");
+		addMessage(_i);
+		
+		LogMessage _j = new LogMessage("Webserver:dynamic request detected");
+		addMessage(_j);
+	}
+	
+	public void navigation()
+	{
+		initialLog();
+		printLog();
+		while(isEditing)
+		{
+			
+			String orderInput = JOP.in("Would you like to add a LogMessage? Input a commmand?");
+			
+			if(orderInput.equalsIgnoreCase("Print"))
+			{
+				printLog();
+			}
+			
+			else if(orderInput.equalsIgnoreCase("Add"))
+			{
+				_l = new LogMessage(JOP.in("Please input a message (machineID:description): "));
+				addMessage(_l);
+			}
+			
+			else if(orderInput.equalsIgnoreCase("Keyword search"))
+			{
+				searchWord(JOP.in("Please input a keyword:"));
+			}
+			
+			else if(orderInput.equalsIgnoreCase("ID search"))
+			{
+				searchID(JOP.in("Please specify a machineID:"));
+			}
+			
+			else if(orderInput.equalsIgnoreCase("Keyword remove"))
+			{
+				removeMessages(JOP.in("Please input a keyword:"));
+			}
+			
+			else if(orderInput.equalsIgnoreCase("ID remove"))
+			{
+				removeID(JOP.in("Please specify a machineID:"));
+			}
+			
+			else if(orderInput.equalsIgnoreCase("Random"))
+			{
+				random(JOP.in("Please specify a machineID"));
+			}
+			
+			else if(orderInput.equalsIgnoreCase("Description count"))
+			{
+				descriptionCount();
+			}
+			
+			else if(orderInput.equalsIgnoreCase("Commands"))
+			{
+				Story story = new Story();
+				story.commands();
+			}
+			
+			else if(orderInput.equalsIgnoreCase("Done"))
+			{
+				isEditing = false;
+			}
+			
+			else
+			{
+				JOP.msg("Try again");
+			}
+		}
+			printLog();
+			System.exit(0);
+		
+	}
+}
