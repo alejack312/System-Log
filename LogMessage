@@ -1,0 +1,58 @@
+package mod;
+
+public class LogMessage 
+{
+	private String _machineID;
+	private String _description;
+	
+	public LogMessage(String message)
+	{
+	     int c = message.indexOf(":");
+	     _machineID = message.substring(0, c);
+	     _description = message.substring(c + 1);
+	}
+	
+	public boolean containsWord(String keyword)
+	{
+	   if(_description.equals(keyword))
+	   {
+		   return true;
+	   }
+	   if(_description.indexOf(keyword + " ") == 0)
+	   {
+		   return true;
+	   }
+	   if(_description.indexOf(" " + keyword + " ") != -1)
+	   {
+		   return true;
+	   }
+	   if(_description.length() > keyword.length())
+	   {
+		   if((_description.substring(_description.length() - keyword.length() - 1).equals(" " + keyword)))
+		   {
+			   return true;
+		   }
+	   }
+	   return false;
+	}
+	
+	public String getMachineID()
+	{
+		return _machineID;
+	}
+	
+	public String getDescription()
+	{
+		return _description;
+	}
+	
+	public String toString()
+	{
+		return _machineID + ":" + _description + "\n";
+	}
+	
+	public String toStringTwo(int n)
+	{
+		return _machineID + " count: " + n + "\n";
+	}
+}
